@@ -6,7 +6,7 @@ import com.quizapp.service.interf.ConverterDto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AnswerConverterDto implements ConverterDto<Answer, AnswerDto> {
+public class AnswerDtoConverter implements ConverterDto<Answer, AnswerDto> {
     @Override
     public Answer fromDtoToEntity(AnswerDto dto) {
         return Answer.builder()

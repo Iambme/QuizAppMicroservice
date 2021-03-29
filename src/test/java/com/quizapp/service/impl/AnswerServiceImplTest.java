@@ -8,7 +8,7 @@ import com.quizapp.repository.AnswerMongoRepository;
 import com.quizapp.service.interf.AnswerService;
 import com.quizapp.service.interf.ConverterDto;
 import com.quizapp.service.interf.QuestionService;
-import com.quizapp.utils.AnswerConverterDto;
+import com.quizapp.utils.AnswerDtoConverter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +24,13 @@ import static org.mockito.Mockito.*;
 class AnswerServiceImplTest {
     private final AnswerMongoRepository answerMongoRepository = mock(AnswerMongoRepository.class);
     private final QuestionService questionService = mock(QuestionService.class);
-    private ConverterDto<Answer, AnswerDto> answerConverterDto;
+    private ConverterDto<Answer, AnswerDto> answerDtoConverter;
     private AnswerService answerService;
 
     @BeforeEach
     void setUp() {
-        answerConverterDto = new AnswerConverterDto();
-        answerService = new AnswerServiceImpl(answerMongoRepository, questionService, answerConverterDto);
+        answerDtoConverter = new AnswerDtoConverter();
+        answerService = new AnswerServiceImpl(answerMongoRepository, questionService, answerDtoConverter);
     }
 
     @Test
@@ -41,19 +41,19 @@ class AnswerServiceImplTest {
         Set<AnswerDto> testAnswers = getQuestionDtoFullParam().getAnswers();
         testAnswers.add(getIncorrectAnswerWithIdDto());
         assertEquals(testAnswers, testQuestion.getAnswers());
-        verify(answerMongoRepository, times(1)).save(answerConverterDto.fromDtoToEntity(getIncorrectAnswerWithIdDto()));
+        verify(answerMongoRepository, times(1)).save(answerDtoConverter.fromDtoToEntity(getIncorrectAnswerWithIdDto()));
         verify(questionService, times(1)).findQuestionById("1");
     }
 
     @Test
     void updateAnswer() {
         answerService.updateAnswer(getIncorrectAnswerWithIdDto());
-        verify(answerMongoRepository, times(1)).save(answerConverterDto.fromDtoToEntity(getIncorrectAnswerWithIdDto()));
+        verify(answerMongoRepository, times(1)).save(answerDtoConverter.fromDtoToEntity(getIncorrectAnswerWithIdDto()));
     }
 
     @Test
     void findAnswerById() throws NotFoundException {
-        when(answerMongoRepository.findById("1")).thenReturn(Optional.of(answerConverterDto.fromDtoToEntity(getCorrectAnswerDto())));
+        when(answerMongoRepository.findById("1")).thenReturn(Optional.of(answerDtoConverter.fromDtoToEntity(getCorrectAnswerDto())));
         AnswerDto testAnswer = answerService.findAnswerById("1");
         assertEquals(testAnswer, getCorrectAnswerDto());
         verify(answerMongoRepository, times(1)).findById("1");

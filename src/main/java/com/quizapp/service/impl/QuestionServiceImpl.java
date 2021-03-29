@@ -9,7 +9,7 @@ import com.quizapp.service.interf.QuestionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,11 +35,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<QuestionDto> findAll() {
+    public Set<QuestionDto> findAll() {
         return questionMongoRepository.findAll()
                 .stream()
                 .map(questionConverterDto::fromEntityToDto)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @Override
