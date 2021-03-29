@@ -12,6 +12,7 @@ import static com.quizapp.prototype.AnswerPrototype.getAnswersDto;
 public class QuestionPrototype {
     public static QuestionDto getQuestionDtoFullParam() {
         return QuestionDto.builder()
+                .id("1")
                 .title("test_title")
                 .description("test_description")
                 .image("test_image")
@@ -23,6 +24,7 @@ public class QuestionPrototype {
         return new HashSet<>() {{
             add(getQuestionDtoFullParam());
             add(QuestionDto.builder()
+                    .id("2")
                     .title("test_title1")
                     .description("test_description2")
                     .answers(getAnswersDto())

@@ -6,7 +6,6 @@ import com.quizapp.entities.dtos.QuizDto;
 import com.quizapp.exceptions.NotFoundException;
 import com.quizapp.repository.QuizMongoRepository;
 import com.quizapp.service.interf.ConverterDto;
-import com.quizapp.service.interf.QuestionService;
 import com.quizapp.service.interf.QuizService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ import java.util.stream.Collectors;
 public class QuizServiceImpl implements QuizService {
 
     private final QuizMongoRepository quizMongoRepository;
-    private final QuestionService questionService;
     private final ConverterDto<Quiz, QuizDto> quizConverterDto;
 
 

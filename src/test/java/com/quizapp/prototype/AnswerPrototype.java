@@ -10,6 +10,7 @@ import java.util.Set;
 public class AnswerPrototype {
     public static AnswerDto getCorrectAnswerDto() {
         return AnswerDto.builder()
+                .id("2")
                 .text("test_text_true_answer")
                 .correct(true)
                 .build();
