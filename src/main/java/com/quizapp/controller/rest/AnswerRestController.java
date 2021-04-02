@@ -33,19 +33,19 @@ public class AnswerRestController {
     }
 
     @PostMapping("/save/{questionId}")
-    public ResponseEntity<String> save(@Validated @RequestBody AnswerDto answerDto, @PathVariable String questionId) throws NotFoundException {
+    public ResponseEntity<String> saveAnswer(@Validated @RequestBody AnswerDto answerDto, @PathVariable String questionId) throws NotFoundException {
         answerService.addAnswerToQuestion(answerDto, questionId);
         return ResponseEntity.ok("Answer successfully added");
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> update(@Validated @RequestBody AnswerDto answerDto) {
+    public ResponseEntity<String> updateAnswer(@Validated @RequestBody AnswerDto answerDto) {
         answerService.updateAnswer(answerDto);
         return ResponseEntity.ok("Answer successfully updated");
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteQuiz(@PathVariable("id") String id) {
+    public ResponseEntity<String> deleteAnswer(@PathVariable("id") String id) {
         answerService.deleteAnswerById(id);
         return ResponseEntity.ok("Answer successfully deleted");
     }

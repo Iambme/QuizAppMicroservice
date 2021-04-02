@@ -22,24 +22,24 @@ public class QuestionRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<QuestionDto> get(@PathVariable String id) throws NotFoundException {
+    public ResponseEntity<QuestionDto> getQuestion(@PathVariable String id) throws NotFoundException {
         return ResponseEntity.ok(questionService.findQuestionById(id));
     }
 
     @PostMapping("/save")
-    public ResponseEntity<String> save(@Validated @RequestBody QuestionDto questionDto) {
+    public ResponseEntity<String> saveQuestion(@Validated @RequestBody QuestionDto questionDto) {
         questionService.addQuestion(questionDto);
         return ResponseEntity.ok("Question successfully added");
     }
 
     @PutMapping("/update")
-    public ResponseEntity<String> update(@Validated @RequestBody QuestionDto questionDto) {
+    public ResponseEntity<String> updateQuestion(@Validated @RequestBody QuestionDto questionDto) {
         questionService.updateQuestion(questionDto);
         return ResponseEntity.ok("Question successfully updated");
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable("id") String id) {
+    public ResponseEntity<String> deleteQuestion(@PathVariable("id") String id) {
         questionService.deleteQuestionById(id);
         return ResponseEntity.ok("Question successfully deleted");
     }

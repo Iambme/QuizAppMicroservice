@@ -54,7 +54,7 @@ class AnswerRestControllerTest {
     }
 
     @Test
-    void save() throws Exception {
+    void saveAnswer() throws Exception {
         when(questionService.findQuestionById("1")).thenReturn(getQuestionDtoFullParam());
         mockMvc.perform(post("/answer/save/{questionId}", 1)
                 .param("answerDto", objectMapper.writeValueAsString(getIncorrectAnswerWithIdDto()))
@@ -65,7 +65,7 @@ class AnswerRestControllerTest {
     }
 
     @Test
-    void update() throws Exception {
+    void updateAnswer() throws Exception {
         mockMvc.perform(put("/answer/update")
                 .param("answerDto", objectMapper.writeValueAsString(getIncorrectAnswerWithIdDto()))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -75,7 +75,7 @@ class AnswerRestControllerTest {
     }
 
     @Test
-    void deleteQuiz() throws Exception {
+    void deleteAnswer() throws Exception {
         mockMvc.perform(delete("/answer/delete/{id}", 1))
                 .andExpect(status().isOk());
         verify(answerService,times(1)).deleteAnswerById("1");
