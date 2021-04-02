@@ -2,6 +2,9 @@ package com.quizapp.prototype;
 
 import com.quizapp.entities.dtos.QuizDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.quizapp.prototype.QuestionPrototype.getQuestionsDto;
 
 public class QuizPrototype {
@@ -14,6 +17,20 @@ public class QuizPrototype {
                 .questions(getQuestionsDto())
                 .userId(1)
                 .build();
+    }
+
+    public static List<QuizDto> getQuizDtoList() {
+        return new ArrayList<>() {{
+            add(getQuizDtoFullParam());
+            add(QuizDto.builder()
+                    .id("2")
+                    .title("test_title_2")
+                    .description("test_description_2")
+                    .subject("test_subject_2")
+                    .questions(getQuestionsDto())
+                    .userId(1)
+                    .build());
+        }};
     }
 
 

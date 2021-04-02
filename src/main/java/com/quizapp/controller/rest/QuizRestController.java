@@ -35,7 +35,7 @@ public class QuizRestController {
     }
 
     @GetMapping("/allByUser/{id}")
-    public ResponseEntity<List<QuizDto>> getAllByUser(@PathVariable Integer id) {
+    public ResponseEntity<List<QuizDto>> getAllQuizByUser(@PathVariable Integer id) {
         return ResponseEntity.ok(quizService.findQuizByUserId(id));
     }
 
