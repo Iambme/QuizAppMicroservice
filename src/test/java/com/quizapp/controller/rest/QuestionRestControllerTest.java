@@ -2,6 +2,7 @@ package com.quizapp.controller.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.quizapp.service.interf.QuestionService;
+import com.quizapp.service.producer.ProducerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
@@ -17,13 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class QuestionRestControllerTest {
     private final QuestionService questionService = mock(QuestionService.class);
+    private final ProducerService producerService = mock(ProducerService.class);
     MockMvc mockMvc;
     ObjectMapper objectMapper;
 
     @BeforeEach
     void setUp() {
         objectMapper = new ObjectMapper();
-        mockMvc = MockMvcBuilders.standaloneSetup(new QuestionRestController(questionService)).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(new QuestionRestController(questionService,producerService)).build();
     }
 
     @Test

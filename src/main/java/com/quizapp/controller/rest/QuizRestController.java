@@ -7,14 +7,7 @@ import com.quizapp.service.interf.QuizService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +16,8 @@ import java.util.List;
 @RequestMapping("/quiz")
 public class QuizRestController {
     private final QuizService quizService;
+
+
 
     @GetMapping("/all")
     public ResponseEntity<List<QuizDto>> getAllQuiz() {
@@ -41,6 +36,7 @@ public class QuizRestController {
 
     @PostMapping("/save")
     public ResponseEntity<String> saveNewQuiz(@Validated @RequestBody QuizDto quizDto) {
+
         quizService.addQuiz(quizDto);
         return ResponseEntity.ok("Quiz successfully added");
     }

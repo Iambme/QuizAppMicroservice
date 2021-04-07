@@ -3,6 +3,7 @@ package com.quizapp.controller.rest;
 import com.quizapp.entities.dtos.QuestionDto;
 import com.quizapp.exceptions.NotFoundException;
 import com.quizapp.service.interf.QuestionService;
+import com.quizapp.service.producer.ProducerService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,9 +16,11 @@ import java.util.Set;
 @RequestMapping("question")
 public class QuestionRestController {
     private final QuestionService questionService;
+    private final ProducerService producerService;
 
     @GetMapping("/all")
     public ResponseEntity<Set<QuestionDto>> getAll() {
+        producerService.produce("looks good");
         return ResponseEntity.ok(questionService.findAll());
     }
 
